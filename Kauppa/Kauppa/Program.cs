@@ -18,22 +18,38 @@ namespace Kauppa
 
     class Nuoli
     {
-        public TipType Tip { get;}
-        public BottomType Bottom { get;}
-        public int Length { get;}
+        private TipType tip;
+        private BottomType bottom;
+        private int length;
 
         public Nuoli(TipType tip, BottomType bottom, int length)
         {
-            Tip = tip;
-            Bottom = bottom;
-            Length = length;
+            this.tip = tip;
+            this.bottom = bottom;
+            this.length = length;
+        }
+
+        // Getterit
+        public TipType GetTip()
+        {
+            return tip;
+        }
+
+        public BottomType GetBottom()
+        {
+            return bottom;
+        }
+
+        public int GetLength()
+        {
+            return length;
         }
 
         public double PalautaHinta()
         {
             double hinta = 0;
 
-            hinta += Tip switch
+            hinta += tip switch
             {
                 TipType.Tuvala => 3,
                 TipType.Godr => 5,
@@ -41,7 +57,7 @@ namespace Kauppa
                 _ => 0
             };
 
-            hinta += Bottom switch
+            hinta += bottom switch
             {
                 BottomType.Simple => 0,
                 BottomType.Refined => 1,
@@ -49,7 +65,7 @@ namespace Kauppa
                 _ => 0
             };
 
-            hinta += Length * 0.05;
+            hinta += length * 0.05;
 
             return hinta;
         }
@@ -62,7 +78,7 @@ namespace Kauppa
             Console.WriteLine("Tervettuloa kauppaan!");
             Console.WriteLine();
 
-            Console.WriteLine("Valitse kärki: 0 = Tuvala, 1 = Teräs, 2 = Sovereign");
+            Console.WriteLine("Valitse kärki: 0 = Tuvala, 1 = Godr, 2 = Sovereign");
             TipType Tip = (TipType)int.Parse(Console.ReadLine());
 
             Console.WriteLine("Valitse perä: 0 = Simple, 1 = Refined, 2 = Mythical");
